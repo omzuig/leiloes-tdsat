@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Adm
  */
 public class listagemVIEW extends javax.swing.JFrame {
-
+// Definindo esta tela como a principal do sistema
     /**
      * Creates new form listagemVIEW
      */
