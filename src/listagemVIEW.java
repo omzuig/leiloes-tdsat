@@ -137,17 +137,20 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        int linhaSelecionada = listaProdutos.getSelectedRow();
+       String idTexto = id_produto_venda.getText();
         
-        if (linhaSelecionada == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione um produto na tabela primeiro!");
+        if (idTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite o ID do produto para vender!");
         } else {
-            // Pega o ID que está na coluna 0 da linha selecionada
-            int id = Integer.parseInt(listaProdutos.getValueAt(linhaSelecionada, 0).toString());
-            
-            ProdutosDAO produtosdao = new ProdutosDAO();
-            produtosdao.venderProduto(id); // Vende no banco
-            listarProdutos(); // Atualiza a tabela na mesma hora
+            try {
+                int id = Integer.parseInt(idTexto);
+                ProdutosDAO produtosdao = new ProdutosDAO();
+                produtosdao.venderProduto(id); 
+                listarProdutos(); // Atualiza a tabela na mesma hora
+                id_produto_venda.setText(""); // Limpa o campo após vender
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "ID inválido! Digite apenas números.");
+            }
         }
         
     }//GEN-LAST:event_btnVenderActionPerformed
